@@ -359,6 +359,17 @@ def apod():
     return content, media;
 
 
+# Get some number fact with numbersapi.com
+def numbers():
+    datas = json.loads(urllib.urlopen("http://numbersapi.com/random/trivia?json").read())
+    text = datas['text']
+
+    content = "Number fact: "+text+" #numbers #numbersapi"
+    media = ""
+
+    return content, media;
+
+
 # Debug log
 if DEBUG is True:
     log_file = open(DEBUG_FILE, 'ab+')
@@ -381,7 +392,8 @@ options = [
     "chuck_quote",
     "ron_quote",
     "movie",
-    "apod"
+    "apod",
+    "numbers"
 ]
 
 

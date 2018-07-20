@@ -17,6 +17,7 @@ The initial idea was to "speak" a Raspberry Pi on Twitter. The script tweets sev
 - random Ron Swanson quote
 - random popular movie title and picture
 - the Astronomy Picture Of the Day from NASA
+- NumberAPI, an API of intersting number facts
 
 TweetBoxBot is used on my Raspberry Pi 2 with the dedicated Twitter account  [@TweetBoxBot](https://twitter.com/tweetboxbot).
 
@@ -109,6 +110,7 @@ Here are the available arguments :
 - ron_quote
 - movie
 - apod
+- numbers
 
 
 # Sending tweets automatically
