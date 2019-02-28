@@ -209,7 +209,7 @@ def ping():
 
     ping = os.popen("/bin/ping -qc 1 "+host+" | awk -F/ '/^rtt/ { print $5 }'").read().strip()
 
-    content = host+": "+ping+" ms"
+    content = host+": "+ping+" ms #ping"
     media = ""
 
     return content, media;
@@ -298,7 +298,7 @@ def chuck_quote():
 
         quote_len = len(quote)
 
-    content = quote+" @chucknorris"
+    content = quote+" @chucknorris #quote"
     media = ""
 
     return content, media;
@@ -306,15 +306,15 @@ def chuck_quote():
 
 # Get random Ron Swanson quote from https://github.com/jamesseanwright/ron-swanson-quotes
 def ron_quote():
-    quote_len = 200
+    quote_len = 300
 
-    while quote_len > 100: # 100 is the maximum length of the quote for the tweet
+    while quote_len > 200: # 200 is the maximum length of the quote for the tweet
         datas = json.loads(urllib.urlopen("http://ron-swanson-quotes.herokuapp.com/v2/quotes").read())
         quote = datas[0]
 
         quote_len = len(quote)
 
-    content = quote+" @RonUSwanson"
+    content = quote+" @RonUSwanson #quote"
     media = ""
 
     return content, media;
@@ -353,7 +353,7 @@ def apod():
     
     urllib.urlretrieve(picture, TMP_FILE+file_ext)
 
-    content = "NASA APOD of "+date+" - "+title+" @apod"
+    content = "NASA APOD of "+date+" - "+title+" #nasa @apod"
     media = TMP_FILE+file_ext
 
     return content, media;
@@ -365,6 +365,22 @@ def numbers():
     text = datas['text']
 
     content = "Number fact: "+text+" #numbers #numbersapi"
+    media = ""
+
+    return content, media;
+
+
+# Get random Breaking Bad quote from https://breakingbadquotes.xyz
+def breakingbadquote():
+    quote_len = 300
+
+    while quote_len > 200: # 100 is the maximum length of the quote for the tweet
+        datas = json.loads(urllib.urlopen("https://breaking-bad-quotes.herokuapp.com/v1/quotes").read())
+        quote = datas[0]
+
+        quote_len = len(quote['quote'])
+
+    content = "\""+quote['quote']+"\" - "+quote['author']+" #BreakingBadQuotes #BreakingBad #quote"
     media = ""
 
     return content, media;
@@ -393,7 +409,8 @@ options = [
     "ron_quote",
     "movie",
     "apod",
-    "numbers"
+    "numbers",
+    "breakingbadquote"
 ]
 
 
