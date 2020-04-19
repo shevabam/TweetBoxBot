@@ -374,13 +374,29 @@ def numbers():
 def breakingbadquote():
     quote_len = 300
 
-    while quote_len > 200: # 100 is the maximum length of the quote for the tweet
+    while quote_len > 200: # 200 is the maximum length of the quote for the tweet
         datas = json.loads(urllib.urlopen("https://breaking-bad-quotes.herokuapp.com/v1/quotes").read())
         quote = datas[0]
 
         quote_len = len(quote['quote'])
 
     content = "\""+quote['quote']+"\" - "+quote['author']+" #BreakingBadQuotes #BreakingBad #quote"
+    media = ""
+
+    return content, media;
+
+
+# Get random Game of Thrones quote from https://gameofthronesquotes.xyz
+def gameofthronesquote():
+    quote_len = 300
+
+    while quote_len > 200: # 200 is the maximum length of the quote for the tweet
+        datas = json.loads(urllib.urlopen("https://game-of-thrones-quotes.herokuapp.com/v1/random").read())
+        quote = datas
+
+        quote_len = len(quote['sentence'])
+
+    content = "\""+quote['sentence']+"\" - "+quote['character']['name']+" #GameOfThronesQuote #GameOfThrones #quote"
     media = ""
 
     return content, media;
@@ -410,7 +426,8 @@ options = [
     "movie",
     "apod",
     "numbers",
-    "breakingbadquote"
+    "breakingbadquote",
+    "gameofthronesquote"
 ]
 
 
