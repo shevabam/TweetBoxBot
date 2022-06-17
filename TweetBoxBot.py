@@ -375,7 +375,7 @@ def breakingbadquote():
     quote_len = 300
 
     while quote_len > 200: # 200 is the maximum length of the quote for the tweet
-        datas = json.loads(urllib.urlopen("https://breaking-bad-quotes.herokuapp.com/v1/quotes").read())
+        datas = json.loads(urllib.urlopen("https://api.breakingbadquotes.xyz/v1/quotes").read())
         quote = datas[0]
 
         quote_len = len(quote['quote'])
@@ -391,7 +391,7 @@ def gameofthronesquote():
     quote_len = 300
 
     while quote_len > 200: # 200 is the maximum length of the quote for the tweet
-        datas = json.loads(urllib.urlopen("https://game-of-thrones-quotes.herokuapp.com/v1/random").read())
+        datas = json.loads(urllib.urlopen("https://api.gameofthronesquotes.xyz/v1/random").read())
         quote = datas
 
         quote_len = len(quote['sentence'])
