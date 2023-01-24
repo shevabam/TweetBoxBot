@@ -13,7 +13,7 @@
 #                                                      #
 # **************************************************** #
 
-import urllib, urlparse, json, random, os, time, sys
+import urljoin, urllib.parse, json, random, os, time, sys, urllib, urllib.request
 
 from twython import Twython
 
@@ -342,23 +342,22 @@ def movie():
     return content, media;
 
 
-# Get Astronomy Picture Of the Day (NASA)
+ # Get Astronomy Picture Of the Day (NASA)
 def apod():
-    datas = json.loads(urllib.urlopen("https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY").read())
+    datas = json.loads(urllib.request.urlopen("https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY").read())
     picture = datas['hdurl']
     title = datas['title']
     date = datas['date']
 
-    filename, file_ext = os.path.splitext(os.path.basename(urlparse.urlsplit(picture).path))
-    
-    urllib.urlretrieve(picture, TMP_FILE+file_ext)
+    filename, file_ext = os.path.splitext(os.path.basename(urllib.parse.urlsplit(picture).path))
 
-    content = "NASA APOD of "+date+" - "+title+" #nasa @apod"
+    urllib.request.urlretrieve(picture, TMP_FILE+file_ext)
+
+    content = "NASA APOD of "+date+" - "+title+" @apod"
     media = TMP_FILE+file_ext
 
     return content, media;
-
-
+  
 # Get some number fact with numbersapi.com
 def numbers():
     datas = json.loads(urllib.urlopen("http://numbersapi.com/random/trivia?json").read())
