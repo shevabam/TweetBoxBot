@@ -13,7 +13,7 @@
 #                                                      #
 # **************************************************** #
 
-import urllib, urlparse, json, random, os, time, sys
+import urljoin, urllib.parse, json, random, os, time, sys, urllib, urllib.request
 
 from twython import Twython
 
